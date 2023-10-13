@@ -52,9 +52,10 @@ export async function GET(request: Request) {
         genre: getValue(splittedRow[2]),
         name: getValue(splittedRow[3]),
         participantId: getValue(splittedRow[4]),
-        points: getValue(splittedRow[15]),
-        medal: getValue(splittedRow[16]),
-        school: getValue(splittedRow[17]),
+
+        points: getValue(splittedRow[splittedRow.length - 3]),
+        medal: getValue(splittedRow[splittedRow.length - 2]),
+        school: getValue(splittedRow[splittedRow.length - 1]),
       };
   
       participants.push(newParticipant);
@@ -65,7 +66,7 @@ export async function GET(request: Request) {
   // Close the browser
   await browser.close();
 
-  return new Response(JSON.stringify({ message: "Hello world", contestId, participants, rows }), {
+  return new Response(JSON.stringify({ message: "Hello world", contestId, participants }), {
     headers: { "content-type": "application/json" },
   });
 }
