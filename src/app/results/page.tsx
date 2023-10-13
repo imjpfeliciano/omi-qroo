@@ -13,14 +13,17 @@ interface ResultsResponse {
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function Results() {
-  const currentYear = new Date().getFullYear() + 1;
-  const years = Array.from({ length: currentYear - MIN_YEAR }, (_, i) => ({
+  const currentYear = new Date().getFullYear() ;
+  const currentContestId = currentYear - MIN_YEAR + MIN_CONTEST_ID;
+
+  console.log({ currentYear, currentContestId })
+  const years = Array.from({ length: currentYear - MIN_YEAR + 1 }, (_, i) => ({
     year: MIN_YEAR + i,
     contestId: MIN_CONTEST_ID + i,
   }));
 
-  const [selectedYear, setSelectedYear] = useState(MIN_YEAR);
-  const [selectedContestId, setSelectedContestId] = useState(MIN_CONTEST_ID);
+  const [selectedYear, setSelectedYear] = useState(currentYear);
+  const [selectedContestId, setSelectedContestId] = useState(currentContestId);
 
   const { data, error } = useSWR<ResultsResponse>(
     `/api/v1/results?contestId=${selectedContestId}`,
