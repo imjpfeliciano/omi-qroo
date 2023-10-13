@@ -8,7 +8,7 @@ const getValue = (row: string | null) => {
   return $.text().trim();
 }
 
-interface OmiParticipant {
+export interface OmiParticipant {
   ioi: boolean;
   standing: string | null;
   genre: string | null;
