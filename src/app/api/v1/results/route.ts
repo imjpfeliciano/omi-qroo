@@ -1,5 +1,6 @@
-import { chromium } from "playwright";
+// import { chromium } from "playwright";
 import cheerio from "cheerio";
+import axios from "axios";
 
 const getValue = (row: string | null) => {
   if (!row) return null;
@@ -22,12 +23,8 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const contestId = searchParams.get("contestId");
 
-  const browser = await chromium.launch();
-  const page = await browser.newPage();
-
-  await page.goto(`https://www.olimpiadadeinformatica.org.mx/Resultados/Olimpiada/Resultados?clave=${contestId}`);
-
-  const content = await page.content();
+  const html = await axios.get(`https://www.olimpiadadeinformatica.org.mx/Resultados/Olimpiada/Resultados?clave=${contestId}`);
+  const content = html.data;
 
   // Get the first table in the content
   // @ts-ignore
@@ -61,10 +58,6 @@ export async function GET(request: Request) {
       participants.push(newParticipant);
     }   
   });
-
-
-  // Close the browser
-  await browser.close();
 
   return new Response(JSON.stringify({ message: "Hello world", contestId, participants }), {
     headers: { "content-type": "application/json" },
