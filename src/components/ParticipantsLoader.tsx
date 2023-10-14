@@ -1,5 +1,5 @@
 const SingleParticipantLoader = () => (
-  <div className="bg-white w-full shadow-lg grid grid-cols-5 p-4 rounded items-center">
+  <div className="bg-white w-full shadow-lg grid grid-cols-5 p-4 rounded items-center max-h-[64px]">
     {/* id */}
     <div className="bg-gray-300 w-2/3 h-4 animate-pulse rounded"></div>
 

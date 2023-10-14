@@ -85,6 +85,8 @@ export default function Results() {
             ))}
           </div>
         )}
+        {/* 
+        <ParticipantsLoader /> */}
       </div>
     </div>
   );
