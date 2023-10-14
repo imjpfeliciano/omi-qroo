@@ -27,16 +27,12 @@ export default function Results() {
   const [selectedYear, setSelectedYear] = useState(currentYear);
   const [selectedContestId, setSelectedContestId] = useState(currentContestId);
 
-  const { data, error } = useSWR<ResultsResponse>(
+  const { data, error, isLoading } = useSWR<ResultsResponse>(
     `/api/v1/results?contestId=${selectedContestId}`,
     fetcher
   );
 
   if (error) return <div>Failed to load</div>;
-
-  if (!data) return <div>Loading...</div>;
-
-  const { participants } = data;
 
   const handleSelectionChange = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -48,7 +44,7 @@ export default function Results() {
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 max-w-screen-lg w-full">
       <h2 className="text-2xl font-bold">Resultados de la delegación:</h2>
 
       <div className="flex flex-row gap-4">
@@ -73,11 +69,23 @@ export default function Results() {
       <div>
         <h4 className="text-lg">Resultados</h4>
 
-        <div className="flex flex-col gap-2">
-          {participants.map((participant) => (
-            <ParticipantCard key={participant.participantId} {...participant} />
-          ))}
-        </div>
+        {/* TODO: Add loader skeleton */}
+        {isLoading && <div className="w-full">Loading...</div>}
+
+        {/* TODO: Add empty state */}
+        {!isLoading && data?.participants.length === 0 && (
+          <div className="w-full">No hay resultados disponibles</div>
+        )}
+        {!isLoading && (data?.participants || []).length > 0 && (
+          <div className="flex flex-col gap-2">
+            {data?.participants.map((participant) => (
+              <ParticipantCard
+                key={participant.participantId}
+                {...participant}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
