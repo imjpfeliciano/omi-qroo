@@ -22,9 +22,12 @@ const ParticipantCard: React.FC<OmiParticipant> = ({
   name,
   medal,
   school,
+  standing,
 }) => (
   <div className="grid grid-cols-5 gap-2 bg-white shadow-lg p-4 rounded hover:scale-105 transition-all duration-150 ease-in-out cursor-pointer">
-    <div className="font-bold">{participantId}</div>
+    <div className="font-bold">
+      {participantId} - {standing}
+    </div>
     <div className="">
       <RankMedal rank={medal || "- - -"} />
     </div>

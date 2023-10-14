@@ -16,12 +16,12 @@ const NavigationLink = ({
 );
 
 const Navigation = () => (
-  <div className="flex flex-row justify-center items-center gap-4 bg-gray-500 m-auto  py-2">
-    <div className="flex flex-row justify-between max-w-screen-md w-full">
-      <div className="flex flex-row gap-2">
+  <div className="flex flex-row justify-center items-center gap-4 bg-gray-700 m-auto  py-4">
+    <div className="flex flex-row justify-between max-w-screen-lg w-full">
+      <div className="flex flex-row gap-4">
         <NavigationLink href="/">Inicio</NavigationLink>
         <NavigationLink href="/results">Resultados</NavigationLink>
-        <NavigationLink href="/resources">Recursos</NavigationLink>
+        {/* <NavigationLink href="/resources">Recursos</NavigationLink> */}
       </div>
       <div className="text-white">Media Icons</div>
     </div>
