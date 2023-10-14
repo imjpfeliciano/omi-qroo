@@ -2,6 +2,7 @@
 import useSWR, { Fetcher } from "swr";
 import { useState } from "react";
 import ParticipantCard from "@/components/ParticipantCard";
+import ParticipantsLoader from "@/components/ParticipantsLoader";
 
 const MIN_YEAR = 2013; // Last year with information on Olimpiada de Informática page
 const MIN_CONTEST_ID = 18;
@@ -68,9 +69,7 @@ export default function Results() {
 
       <div>
         <h4 className="text-lg">Resultados</h4>
-
-        {/* TODO: Add loader skeleton */}
-        {isLoading && <div className="w-full">Loading...</div>}
+        {isLoading && <ParticipantsLoader />}
 
         {/* TODO: Add empty state */}
         {!isLoading && data?.participants.length === 0 && (
