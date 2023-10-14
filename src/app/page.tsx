@@ -13,8 +13,10 @@ const Home = () => (
         problemas prácticos mediante la lógica y el uso de computadoras, que
         busca promover el desarrollo tecnológico en México y encontrar a los
         mejores programadores, quienes formarán la selección mexicana para
-        participar en las próximas Olimpiadas Internacionales de Informática
-        (IOI).
+        participar en las próximas{" "}
+        <span className="font-semibold">
+          Olimpiadas Internacionales de Informática (IOI).
+        </span>
       </p>
       <p>
         La OMI es un concurso en el que sobre todo se requiere tener facilidad,
