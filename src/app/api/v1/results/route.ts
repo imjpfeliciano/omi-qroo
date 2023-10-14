@@ -25,7 +25,8 @@ export async function GET(request: Request) {
   // @ts-ignore
   const rows = table
     .match(/<tr.*?>([\s\S]*?)<\/tr>/g)
-    .filter((row) => row.includes("<span>ROO-"));
+    // FIXME: Support for `QIR-`
+    .filter((row) => row.includes("<span>ROO-") || row.includes("<span>QIR-"));
 
   const participants: OmiParticipant[] = [];
 

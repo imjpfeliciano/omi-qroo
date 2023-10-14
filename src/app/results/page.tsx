@@ -4,8 +4,8 @@ import { useState } from "react";
 import ParticipantCard from "@/components/ParticipantCard";
 import ParticipantsLoader from "@/components/ParticipantsLoader";
 
-const MIN_YEAR = 2013; // Last year with information on Olimpiada de Informática page
-const MIN_CONTEST_ID = 18;
+const MIN_YEAR = 2011; // Last year with information on Olimpiada de Informática page
+const MIN_CONTEST_ID = 16;
 
 interface ResultsResponse {
   participants: OmiParticipant[];
@@ -85,8 +85,6 @@ export default function Results() {
             ))}
           </div>
         )}
-        {/* 
-        <ParticipantsLoader /> */}
       </div>
     </div>
   );

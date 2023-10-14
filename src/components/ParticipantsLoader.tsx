@@ -4,7 +4,6 @@ const SingleParticipantLoader = () => (
     <div className="bg-gray-300 w-2/3 h-4 animate-pulse rounded"></div>
 
     {/* medal */}
-
     <div className="bg-gray-300 w-10 h-10 animate-pulse rounded-full"></div>
 
     {/* name */}

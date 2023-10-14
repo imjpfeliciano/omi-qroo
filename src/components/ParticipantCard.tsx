@@ -17,6 +17,7 @@ const RankMedal = ({ rank }: { rank: string }) => {
   return <img src={ImageMedal.src} alt={rank} className="w-8 h-8" />;
 };
 
+// TODO: Add image and link to ioi profile (if available)
 const ParticipantCard: React.FC<OmiParticipant> = ({
   participantId,
   name,
