@@ -14,7 +14,13 @@ const RankMedal = ({ rank }: { rank: string }) => {
 
   if (!ImageMedal) return rank;
 
-  return <img src={ImageMedal.src} alt={rank} className="w-8 h-8" />;
+  return (
+    <img
+      src={ImageMedal.src}
+      alt={`Medallista de ${rank.toLowerCase()}`}
+      className="w-8 h-8"
+    />
+  );
 };
 
 // TODO: Add image and link to ioi profile (if available)
