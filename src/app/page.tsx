@@ -2,7 +2,13 @@ import OMILOGO from "../assets/images/omi-qroo-logo.png";
 
 const Home = () => (
   <div className="flex flex-col gap-4 max-w-screen-lg">
-    <img src={OMILOGO.src} alt="OMI Q. Roo Logo" className="w-2/3 m-auto" />
+    <img
+      src={OMILOGO.src}
+      alt="OMI Q. Roo Logo"
+      className="w-2/3 m-auto"
+      width={OMILOGO.width}
+      height={OMILOGO.height}
+    />
     <article className="flex flex-col gap-2 text-lg font-light">
       <p>
         La{" "}

@@ -19,6 +19,8 @@ const RankMedal = ({ rank }: { rank: string }) => {
       src={ImageMedal.src}
       alt={`Medallista de ${rank.toLowerCase()}`}
       className="w-8 h-8"
+      width={ImageMedal.width}
+      height={ImageMedal.height}
     />
   );
 };

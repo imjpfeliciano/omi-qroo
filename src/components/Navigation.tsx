@@ -9,7 +9,7 @@ const NavigationLink = ({
 }) => (
   <Link
     href={href}
-    className="font-semibold hover:underline text-gray-500 hover:text-white"
+    className="font-semibold hover:underline hover:text-gray-500 text-white"
   >
     {children}
   </Link>
