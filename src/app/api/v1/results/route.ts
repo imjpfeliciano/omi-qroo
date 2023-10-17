@@ -1,10 +1,10 @@
 // import { chromium } from "playwright";
-import cheerio from "cheerio";
+import { load } from "cheerio";
 import axios from "axios";
 
 const getValue = (row: string | null) => {
   if (!row) return null;
-  const $ = cheerio.load(row);
+  const $ = load(row);
   return $.text().trim();
 };
 
@@ -34,7 +34,7 @@ export async function GET(request: Request) {
     // split each row by td
     const splittedRow = row.match(/<td.*?>([\s\S]*?)<\/td>/g);
     if (splittedRow) {
-      const $ = cheerio.load(row);
+      const $ = load(row);
 
       const newParticipant: OmiParticipant = {
         ioi: Boolean(
