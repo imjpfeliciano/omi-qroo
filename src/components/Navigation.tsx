@@ -21,7 +21,7 @@ const Navigation = () => (
       <div className="flex flex-row gap-4">
         <NavigationLink href="/">Inicio</NavigationLink>
         <NavigationLink href="/results">Resultados</NavigationLink>
-        {/* <NavigationLink href="/resources">Recursos</NavigationLink> */}
+        <NavigationLink href="/resources">Recursos</NavigationLink>
       </div>
       {/* <div className="text-white">Media Icons</div> */}
     </div>
