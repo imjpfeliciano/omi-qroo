@@ -1,7 +1,8 @@
+import Container from "@/components/Container";
 import OMILOGO from "../assets/images/omi-qroo-logo.png";
 
 const Home = () => (
-  <div className="flex flex-col gap-4 max-w-screen-lg">
+  <Container>
     <img
       src={OMILOGO.src}
       alt="OMI Q. Roo Logo"
@@ -42,7 +43,7 @@ const Home = () => (
         </a>
       </div>
     </article>
-  </div>
+  </Container>
 );
 
 export default Home;

@@ -3,6 +3,7 @@ import useSWR, { Fetcher } from "swr";
 import { useState } from "react";
 import ParticipantCard from "@/components/ParticipantCard";
 import ParticipantsLoader from "@/components/ParticipantsLoader";
+import Container from "@/components/Container";
 
 const MIN_YEAR = 2011; // Last year with information on Olimpiada de Informática page
 const MIN_CONTEST_ID = 16;
@@ -45,7 +46,7 @@ export default function Results() {
   };
 
   return (
-    <div className="flex flex-col gap-4 max-w-screen-lg w-full">
+    <Container>
       <h2 className="text-2xl font-bold">Resultados de la delegación:</h2>
 
       <div className="flex flex-row gap-4">
@@ -86,6 +87,6 @@ export default function Results() {
           </div>
         )}
       </div>
-    </div>
+    </Container>
   );
 }
