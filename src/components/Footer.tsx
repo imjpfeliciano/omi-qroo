@@ -1,9 +1,11 @@
+const currentYear = new Date().getFullYear();
+
 const Footer = () => (
   <footer className="bg-black text-white">
     <div className="flex flex-col justify-center items-center py-4">
       <div>
         <span className="text-lg">Olimpiada de Informática - Quintana Roo</span>
-        <span className="text-sm">© 2023</span>
+        <span className="text-sm">© {currentYear}</span>
       </div>
       <div>
         <span className="text-sm">Made with ❤️ by</span>{" "}
