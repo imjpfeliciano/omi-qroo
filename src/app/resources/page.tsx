@@ -90,7 +90,7 @@ const ResourcesPage = () => (
             <a
               key={platform.url}
               href={platform.url}
-              className="bg-white shadow-lg p-4 flex flex-col items-center justify-center gap-2"
+              className="bg-white shadow-lg p-4 flex flex-col items-center justify-center gap-2 hover:scale-105 transition-all duration-150 ease-out"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -116,7 +116,11 @@ const ResourcesPage = () => (
               className="flex flex-col items-center gap-2"
             >
               <h4 className="font-semibold text-lg">{book.title}</h4>
-              <img src={book.cover} alt={book.title} className="w-[200px]" />
+              <img
+                src={book.cover}
+                alt={book.title}
+                className="w-[200px] aspect-[6/9]"
+              />
               <a
                 href={book.referenceUrl}
                 target="_blank"

@@ -16,7 +16,7 @@ const NavigationLink = ({
 );
 
 const Navigation = () => (
-  <div className="flex flex-row justify-center items-center gap-4 bg-gray-700 m-auto  py-4">
+  <div className="flex flex-row justify-center items-center gap-4 bg-gray-700 m-auto py-4 w-full">
     <div className="flex flex-row justify-between max-w-screen-lg w-full">
       <div className="flex flex-row gap-4">
         <NavigationLink href="/">Inicio</NavigationLink>
