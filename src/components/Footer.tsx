@@ -10,12 +10,12 @@ const Footer = () => (
       <div>
         <span className="text-sm">Made with ❤️ by</span>{" "}
         <a
-          href="https://github.com/imjpfeliciano"
+          href="https://github.com/imjpfeliciano/omi-qroo"
           target="_blank"
           rel="noopener noreferrer"
           className="font-semibold hover:underline"
         >
-          @imjpfeliciano
+          @cancun-devs
         </a>
       </div>
     </div>
