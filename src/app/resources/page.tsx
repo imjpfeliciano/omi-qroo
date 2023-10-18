@@ -45,7 +45,6 @@ const Books: Book[] = [
     title: "Problemas y Algoritmos",
     referenceUrl: "https://omegaup.com/docs/assets/libroluisvargas.pdf",
     author: "Luis Vargas",
-    // cover: "https://www.lawebdelprogramador.com/pdf/files/1557187115_libro.jpg",
     cover:
       "https://image.isu.pub/150424183734-f415ee6ff79f80d27ca2df858acc60f1/jpg/page_1.jpg",
   },
@@ -95,7 +94,6 @@ const ResourcesPage = () => (
               rel="noopener noreferrer"
             >
               <div className="">
-                {/* <h4 className="font-semibold text-lg">{platform.name}</h4> */}
                 <img
                   src={platform.logo}
                   alt={platform.name}
@@ -119,13 +117,13 @@ const ResourcesPage = () => (
               <img
                 src={book.cover}
                 alt={book.title}
-                className="w-[200px] aspect-[6/9]"
+                className="w-[200px] aspect-[6/9] hover:scale-105 transition-all duration-150 ease-out"
               />
               <a
                 href={book.referenceUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full bg-blue-500 hover:bg-blue-700 px-4 py-2 text-white"
+                className="rounded-full hover:bg-blue-500 bg-blue-700 px-4 py-2 text-white"
               >
                 Ver más
               </a>
