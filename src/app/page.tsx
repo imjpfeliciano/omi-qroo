@@ -30,15 +30,17 @@ const Home = () => (
         ingenio y las computadoras.
       </p>
 
-      <a
-        href="http://olimpiadadeinformatica.org.mx/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <button className="bg-blue-600 text-white font-semibold rounded p-2 hover:bg-blue-700">
-          Ver más
-        </button>
-      </a>
+      <div className="inline-block">
+        <a
+          href="http://olimpiadadeinformatica.org.mx/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button className="bg-blue-600 text-white font-semibold rounded p-2 hover:bg-blue-700">
+            Ver más
+          </button>
+        </a>
+      </div>
     </article>
   </div>
 );
