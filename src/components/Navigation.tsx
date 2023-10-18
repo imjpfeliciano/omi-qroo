@@ -25,7 +25,6 @@ const Navigation = () => (
           <NavigationLink href="/results">Resultados</NavigationLink>
           <NavigationLink href="/resources">Recursos</NavigationLink>
         </div>
-        {/* <div className="text-white">Media Icons</div> */}
       </div>
     </Container>
   </div>
