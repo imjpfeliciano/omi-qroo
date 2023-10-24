@@ -16,6 +16,7 @@ const Home = () => (
       />
       <article className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
+          {/* NOTE: Illustrations are using tailwind blue-500 */}
           <img
             src={ProgrammingIllustration.src}
             alt="Programming Illustration"
