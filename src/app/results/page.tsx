@@ -4,6 +4,7 @@ import { useState } from "react";
 import ParticipantCard from "@/components/ParticipantCard";
 import ParticipantsLoader from "@/components/ParticipantsLoader";
 import Container from "@/components/Container";
+import ResultsIllustration from "@/assets/images/illustrations/contests_section.svg";
 
 const MIN_YEAR = 2011; // Last year with information on Olimpiada de Informática page
 const MIN_CONTEST_ID = 16;
@@ -77,13 +78,20 @@ export default function Results() {
           <div className="w-full">No hay resultados disponibles</div>
         )}
         {!isLoading && (data?.participants || []).length > 0 && (
-          <div className="flex flex-col gap-2">
-            {data?.participants.map((participant) => (
-              <ParticipantCard
-                key={participant.participantId}
-                {...participant}
-              />
-            ))}
+          <div className="flex flex-col gap-[4rem]">
+            <div className="flex flex-col gap-2">
+              {data?.participants.map((participant) => (
+                <ParticipantCard
+                  key={participant.participantId}
+                  {...participant}
+                />
+              ))}
+            </div>
+            <img
+              src={ResultsIllustration.src}
+              alt="Resultados"
+              className="w-1/2 m-auto"
+            />
           </div>
         )}
       </div>
