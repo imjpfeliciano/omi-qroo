@@ -79,6 +79,21 @@ const Books: Book[] = [
   },
 ];
 
+const PlatformResourceItem = ({
+  platform,
+}: {
+  platform: Record<string, any>;
+}) => (
+  <a
+    href={platform.url}
+    className="bg-white shadow-lg p-4 flex flex-col items-center justify-center gap-2 hover:scale-105 transition-all duration-150 ease-out aspect-video"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img src={platform.logo} alt={platform.name} />
+  </a>
+);
+
 const ResourcesPage = () => (
   <Container>
     <div className="flex flex-col gap-4 mt-2">
@@ -86,21 +101,7 @@ const ResourcesPage = () => (
         <h3 className="text-2xl font-bold">Plataformas recomendadas</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-fr">
           {Platforms.map((platform) => (
-            <a
-              key={platform.url}
-              href={platform.url}
-              className="bg-white shadow-lg p-4 flex flex-col items-center justify-center gap-2 hover:scale-105 transition-all duration-150 ease-out"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="">
-                <img
-                  src={platform.logo}
-                  alt={platform.name}
-                  className="w-[200px]"
-                />
-              </div>
-            </a>
+            <PlatformResourceItem key={platform.url} platform={platform} />
           ))}
         </div>
       </section>

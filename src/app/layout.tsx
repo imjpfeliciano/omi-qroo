@@ -46,7 +46,7 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </head>
-      <body className={`${inter.className} flex flex-col gap-6 bg-slate-100`}>
+      <body className={`${inter.className} flex flex-col gap-6 bg-slate-50`}>
         <Navigation />
         <main className="w-max-screen-md flex flex-col items-center  min-h-[calc(100vh-188px)]">
           {children}

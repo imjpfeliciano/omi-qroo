@@ -5,6 +5,7 @@ import ParticipantCard from "@/components/ParticipantCard";
 import ParticipantsLoader from "@/components/ParticipantsLoader";
 import Container from "@/components/Container";
 import ResultsIllustration from "@/assets/images/illustrations/contests_section.svg";
+import NoResults from "@/components/NoResults";
 
 const MIN_YEAR = 2011; // Last year with information on Olimpiada de Informática page
 const MIN_CONTEST_ID = 16;
@@ -13,7 +14,13 @@ interface ResultsResponse {
   participants: OmiParticipant[];
 }
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = async (url: string) => {
+  const res = await fetch(url);
+  if (res.status === 500) {
+    throw new Error("Server error");
+  }
+  return res.json();
+};
 
 const DEPUTY_LEADER = "OMI Q. Roo";
 
@@ -21,7 +28,6 @@ export default function Results() {
   const currentYear = new Date().getFullYear();
   const currentContestId = currentYear - MIN_YEAR + MIN_CONTEST_ID;
 
-  console.log({ currentYear, currentContestId });
   const years = Array.from({ length: currentYear - MIN_YEAR + 1 }, (_, i) => ({
     year: MIN_YEAR + i,
     contestId: MIN_CONTEST_ID + i,
@@ -32,10 +38,12 @@ export default function Results() {
 
   const { data, error, isLoading } = useSWR<ResultsResponse>(
     `/api/v1/results?contestId=${selectedContestId}`,
-    fetcher
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      shouldRetryOnError: false,
+    }
   );
-
-  if (error) return <div>Failed to load</div>;
 
   const handleSelectionChange = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -46,13 +54,15 @@ export default function Results() {
     setSelectedContestId(selectedContestId);
   };
 
+  const showEmptyState = !isLoading && (!data?.participants.length || error);
+
   return (
     <Container>
       <h2 className="text-2xl font-bold">Resultados de la delegación:</h2>
 
       <div className="flex flex-row gap-4">
-        <div className="font-semibold">Año de participacion</div>
-        <div>
+        <label className="font-semibold">
+          Año de participación:
           <select onChange={handleSelectionChange} value={selectedYear}>
             {years.map(({ year, contestId }) => (
               <option key={contestId} value={year}>
@@ -60,25 +70,20 @@ export default function Results() {
               </option>
             ))}
           </select>
-        </div>
-      </div>
-
-      <div className="flex">
-        <h3 className="text-xl">
-          Lider de la delegación: <span>{DEPUTY_LEADER}</span>
-        </h3>
+        </label>
       </div>
 
       <div>
-        <h4 className="text-lg">Resultados</h4>
         {isLoading && <ParticipantsLoader />}
 
         {/* TODO: Add empty state */}
-        {!isLoading && data?.participants.length === 0 && (
-          <div className="w-full">No hay resultados disponibles</div>
-        )}
-        {!isLoading && (data?.participants || []).length > 0 && (
-          <div className="flex flex-col gap-[4rem]">
+        {showEmptyState && <NoResults />}
+        {!showEmptyState && (
+          <div className="flex flex-col gap-2">
+            <h3 className="text-xl">
+              Lider de la delegación: <span>{DEPUTY_LEADER}</span>
+            </h3>
+            <h4 className="text-lg">Resultados</h4>
             <div className="flex flex-col gap-2">
               {data?.participants.map((participant) => (
                 <ParticipantCard
