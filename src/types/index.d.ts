@@ -8,3 +8,8 @@ interface OmiParticipant {
   medal: string | null;
   school: string | null;
 }
+
+interface TeamInformation {
+  name: string;
+  isLeader: boolean;
+}

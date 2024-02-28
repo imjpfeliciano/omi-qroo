@@ -1,5 +1,5 @@
 "use client";
-import useSWR, { Fetcher } from "swr";
+import useSWR from "swr";
 import { useState } from "react";
 import ParticipantCard from "@/components/ParticipantCard";
 import ParticipantsLoader from "@/components/ParticipantsLoader";
@@ -12,6 +12,7 @@ const MIN_CONTEST_ID = 16;
 
 interface ResultsResponse {
   participants: OmiParticipant[];
+  teamInformation: TeamInformation[];
 }
 
 const fetcher = async (url: string) => {
@@ -55,6 +56,15 @@ export default function Results() {
   };
 
   const showEmptyState = !isLoading && (!data?.participants.length || error);
+  const hasLeader = data?.teamInformation.some((member) => member.isLeader);
+
+  let deputyLeader = DEPUTY_LEADER;
+  if (hasLeader) {
+    deputyLeader = data?.teamInformation.find((member) => member.isLeader)
+      ?.name as string;
+  } else if (data?.teamInformation.length) {
+    deputyLeader = data?.teamInformation[0].name;
+  }
 
   return (
     <Container>
@@ -78,10 +88,11 @@ export default function Results() {
 
         {/* TODO: Add empty state */}
         {showEmptyState && <NoResults />}
-        {!showEmptyState && (
+        {!isLoading && !showEmptyState && (
           <div className="flex flex-col gap-2">
             <h3 className="text-xl">
-              Lider de la delegación: <span>{DEPUTY_LEADER}</span>
+              Lider de la delegación:{" "}
+              <span className="font-semibold">{deputyLeader}</span>
             </h3>
             <h4 className="text-lg">Resultados</h4>
             <div className="flex flex-col gap-2">
