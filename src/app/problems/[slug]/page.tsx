@@ -52,7 +52,7 @@ export default async function PostPage({ params: { slug } }: PostPageProps) {
       <PostHeading {...postHeadingContent} />
       <div className="article-content bg-white rounded-lg !max-w-screen p-4 shadow-lg">
         {problemContent}
-        {postHeadingContent.hasSolution && (
+        {(postHeadingContent.hasSolution as boolean) && (
           <ProblemSolution content={solutionContent} />
         )}
       </div>

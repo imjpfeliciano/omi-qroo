@@ -19,8 +19,8 @@ export default async function Page() {
       </div>
 
       {allPostsData.map((post) => (
-        <div key={post.id}>
-          <a href={`/problems/${post.id}`} className="text-blue-500">
+        <div key={post.slug}>
+          <a href={`/problems/${post.slug}`} className="text-blue-500">
             <h4 className="font-semibold">{post.title}</h4>
           </a>
           <div>{post.publishedAt}</div>

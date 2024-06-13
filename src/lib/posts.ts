@@ -7,7 +7,14 @@ const rootContentDirectory = path.join(process.cwd(), "src/blog-content/");
 const postsDirectory = path.join(rootContentDirectory, "problems");
 const solutionsDirectory = path.join(rootContentDirectory, "solutions");
 
-export function getSortedPostsData() {
+interface PostData {
+  slug: string;
+  title: string;
+  date: string;
+  publishedAt: string;
+}
+
+export function getSortedPostsData(): PostData[] {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
     const id = fileName.replace(/\.mdx$/, "");
@@ -15,14 +22,14 @@ export function getSortedPostsData() {
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const matterResult = matter(fileContents);
     return {
-      id,
+      slug: id,
       ...matterResult.data,
-    };
+    } as PostData;
   });
 
   return allPostsData.sort((a, b) => {
     // @ts-ignore
-    if (a.date < b.date) {
+    if (a.title.toLocaleLowerCase() > b.title.toLocaleLowerCase()) {
       return 1;
     } else {
       return -1;
