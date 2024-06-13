@@ -32,7 +32,7 @@ export function getSortedPostsData(): PostData[] {
 
   return allPostsData.sort((a, b) => {
     // @ts-ignore
-    if (a.title.toLocaleLowerCase() > b.title.toLocaleLowerCase()) {
+    if (new Date(a.publishedAt) < new Date(b.publishedAt)) {
       return 1;
     } else {
       return -1;
