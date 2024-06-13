@@ -1,0 +1,61 @@
+## Análisis del Problema
+
+TBD
+
+
+## Propuesta de Solución
+
+```cpp
+#include <iostream>
+#include <stack>
+using namespace std;
+
+int casos;
+string cadena;
+
+bool esCierre(char abre, char cierra) {
+  if (abre == '{' && cierra == '}') return true;
+  if (abre == '(' && cierra == ')') return true;
+  if (abre == '[' && cierra == ']') return true;
+  return false;
+}
+
+bool estaBalanceado(string s) {
+  stack<char> pila;
+
+  for (int i=0; i < s.size(); i++) {
+    char current = s[i];
+
+    if (current == '{' || current == '[' || current == '(') {
+      pila.push(current);
+    } else {
+      if (pila.empty()) return false;
+
+      if (esCierre(pila.top(), current)) {
+        pila.pop();
+      }  else {
+        return false;
+      }
+    }
+  }
+
+  return pila.empty() ? true : false;
+}
+
+int main() {
+  cin.tie(0);
+  ios_base::sync_with_stdio(0);
+
+  cin >> casos;
+  while(casos--) {
+    cin >> cadena;
+
+    if (estaBalanceado(cadena)) {
+      cout << "SI\n";
+    } else {
+      cout << "NO\n";
+    }
+  }
+  return 0;
+}
+```

@@ -6,5 +6,8 @@
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
-  "errorLens.enabled": true
+  "errorLens.enabled": true,
+  "[mdx]": {
+    "editor.defaultFormatter": null
+  },
 }
