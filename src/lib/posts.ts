@@ -12,6 +12,9 @@ interface PostData {
   title: string;
   date: string;
   publishedAt: string;
+  topics: string[];
+  hasSolution: boolean;
+  complexity: string;
 }
 
 export function getSortedPostsData(): PostData[] {

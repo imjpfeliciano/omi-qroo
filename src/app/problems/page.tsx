@@ -18,14 +18,57 @@ export default async function Page() {
         propuestas para los mismos
       </div>
 
-      {allPostsData.map((post) => (
-        <div key={post.slug}>
-          <a href={`/problems/${post.slug}`} className="text-blue-500">
-            <h4 className="font-semibold">{post.title}</h4>
-          </a>
-          <div>{post.publishedAt}</div>
-        </div>
-      ))}
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                Problema
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Categoría
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Complejidad
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Solución disponible
+              </th>
+              <th scope="col" className="px-6 py-3">
+                <span className="sr-only">Ver problema</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {allPostsData.map((post) => (
+              <tr
+                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                key={post.slug}
+              >
+                <th
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  {post.title}
+                </th>
+                <td className="px-6 py-4 capitalize">{post.topics[0]}</td>
+                <td className="px-6 py-4 capitalize">{post.complexity}</td>
+                <td className="px-6 py-4 text-center">
+                  {post.hasSolution ? "✅" : "❌"}
+                </td>
+                <td className="px-6 py-4 text-right">
+                  <a
+                    href={`/problems/${post.slug}`}
+                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  >
+                    Ver problema
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </Container>
   );
 }
