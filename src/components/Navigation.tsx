@@ -24,6 +24,7 @@ const Navigation = () => (
           <NavigationLink href="/">Inicio</NavigationLink>
           <NavigationLink href="/results">Resultados</NavigationLink>
           <NavigationLink href="/resources">Recursos</NavigationLink>
+          <NavigationLink href="/problems">Problemas</NavigationLink>
         </div>
       </div>
     </Container>

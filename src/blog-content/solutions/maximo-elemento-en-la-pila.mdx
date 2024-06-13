@@ -1,0 +1,59 @@
+## Análisis del Problema
+
+Para resolver este problema, debemos de partir de las operaciones básicas de una pila, que son `push` y `pop`.
+En este caso, se nos pide que encontremos el máximo elemento en la pila, por lo que debemos de mantener un registro del máximo elemento en la pila en todo momento.
+
+Para llevar a cabo esto, debemos de considerar que el máximo elemento en la pila puede cambiar en cualquier momento, por lo que debemos de actualizarlo cada vez que se haga un `push` o un `pop`.
+
+Una forma en la que podemos llevar a cabo esto es manteniendo un registro de los máximos elementos en la pila en un stack adicional, sin embargo, esto no es necesario, ya que podemos llevar a cabo esta tarea en un solo stack dado
+que podemos hacer uso de la función `max` de la librería `algorithm` de C++ para obtener el máximo entre dos elementos y únicamente actualizar el máximo en la pila cuando se haga un `push`.
+
+Es decir, el tope de la pila en todo momento será el máximo elemento en la pila, y podemos asumir esto, ya que no utilizaremos los otros elementos de la pila para nada más que para obtener el máximo.
+
+
+
+## Propuesta de Solución
+
+```cpp
+#include <iostream>
+#include <stack>
+#include <algorithm>
+using namespace std;
+
+int main() {
+  cin.tie(nullptr);
+  ios_base::sync_with_stdio(false);
+
+  int acciones;
+  int option;
+  int value;
+  stack<int> pila;
+  
+  cin >> acciones;
+
+  while(acciones--) {
+    cin >> option;
+    switch(option) {
+      case 1:
+        cin >> value;
+        if (pila.empty()) {
+          pila.push(value);
+        } else {
+          pila.push(max(value, pila.top()));
+        }
+      break;
+
+      case 2:
+        pila.pop();
+      break;
+
+      case 3:
+        cout << pila.top() << endl;
+      break;
+        
+    }
+  }
+
+  return 0;
+}
+```
