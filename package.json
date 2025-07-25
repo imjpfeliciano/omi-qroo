@@ -13,10 +13,10 @@
     "cheerio": "^1.0.0-rc.12",
     "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
-    "next": "13.5.4",
+    "next": "15.4.4",
     "next-mdx-remote": "^5.0.0",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "swr": "^2.2.4"
   },
   "devDependencies": {
