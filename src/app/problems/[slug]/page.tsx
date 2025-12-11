@@ -36,7 +36,8 @@ interface PostPageProps {
   };
 }
 
-export default async function PostPage({ params: { slug } }: PostPageProps) {
+export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const { frontmatter: postHeadingContent, content: problemContent } =
     await getMDXContent(slug);
 
