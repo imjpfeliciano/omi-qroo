@@ -1,5 +1,20 @@
 import Container from "@/components/Container";
 
+// Material Design Card Component
+const MaterialCard = ({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => (
+  <div
+    className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out ${className}`}
+  >
+    {children}
+  </div>
+);
+
 interface OnlinePlatform {
   name: string;
   url: string;
@@ -79,52 +94,101 @@ const Books: Book[] = [
   },
 ];
 
-const PlatformResourceItem = ({
-  platform,
-}: {
-  platform: Record<string, any>;
-}) => (
+const PlatformResourceItem = ({ platform }: { platform: OnlinePlatform }) => (
   <a
     href={platform.url}
-    className="bg-white shadow-lg p-4 flex flex-col items-center justify-center gap-2 hover:scale-105 transition-all duration-150 ease-out aspect-video"
     target="_blank"
     rel="noopener noreferrer"
+    className="block h-full"
   >
-    <img src={platform.logo} alt={platform.name} />
+    <MaterialCard className="p-6 h-full flex flex-col items-center justify-center gap-3 hover:shadow-xl transition-all duration-300 cursor-pointer group">
+      <div className="flex-1 flex items-center justify-center w-full">
+        <img
+          src={platform.logo}
+          alt={platform.name}
+          className="max-h-20 max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+      <h4 className="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors duration-200 text-center">
+        {platform.name}
+      </h4>
+    </MaterialCard>
   </a>
 );
 
 const BookItem = ({ book }: { book: Book }) => (
-  <div key={book.referenceUrl} className="flex flex-col items-center gap-4">
-    <img
-      src={book.cover}
-      alt={book.title}
-      className="w-full p-4 aspect-[6/9] hover:scale-105 transition-all duration-150 ease-out overflow-clip"
-    />
-
-    <a href={book.referenceUrl} target="_blank" rel="noreferrer" className="">
-      <h4 className="font-semibold min-h-[50px] hover:text-blue-500">
-        {book.title}
-      </h4>
-    </a>
-  </div>
+  <a
+    href={book.referenceUrl}
+    target="_blank"
+    rel="noreferrer"
+    className="block h-full"
+  >
+    <MaterialCard className="p-4 h-full flex flex-col gap-4 hover:shadow-xl transition-all duration-300 cursor-pointer group">
+      <div className="flex-1 flex items-center justify-center bg-gray-50 rounded-md overflow-hidden">
+        <img
+          src={book.cover}
+          alt={book.title}
+          className="w-full aspect-[6/9] object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+        />
+      </div>
+      <div className="flex flex-col gap-2">
+        <h4 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200 line-clamp-2">
+          {book.title}
+        </h4>
+        <p className="text-sm text-gray-600">{book.author}</p>
+      </div>
+    </MaterialCard>
+  </a>
 );
 
 const ResourcesPage = () => (
   <Container>
-    <div className="flex flex-col gap-4 mt-2">
+    <div className="flex flex-col gap-8 py-6">
+      {/* Page Header */}
       <section className="flex flex-col gap-2">
-        <h3 className="text-2xl font-bold">Plataformas recomendadas</h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-fr">
+        <h1 className="text-3xl font-bold text-gray-900">
+          Recursos de Estudio
+        </h1>
+        <p className="text-gray-600 text-lg leading-relaxed">
+          Explora nuestra colección curada de plataformas de práctica y libros
+          recomendados para mejorar tus habilidades en programación competitiva.
+        </p>
+      </section>
+
+      {/* Platforms Section */}
+      <section className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
+          <h2 className="text-2xl font-bold text-gray-900">
+            Plataformas de Práctica
+          </h2>
+          <p className="text-gray-600 leading-relaxed">
+            Plataformas en línea donde puedes resolver problemas de programación
+            competitiva, participar en concursos y mejorar tus habilidades
+            algorítmicas. Estas plataformas ofrecen problemas de diferentes
+            niveles de dificultad y sistemas de evaluación automática.
+          </p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {Platforms.map((platform) => (
             <PlatformResourceItem key={platform.url} platform={platform} />
           ))}
         </div>
       </section>
 
+      {/* Books Section */}
       <section className="flex flex-col gap-4">
-        <h3 className="text-2xl font-bold">Libros recomendados</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="flex flex-col gap-2">
+          <h2 className="text-2xl font-bold text-gray-900">
+            Libros Recomendados
+          </h2>
+          <p className="text-gray-600 leading-relaxed">
+            Libros esenciales sobre algoritmos, estructuras de datos y
+            programación competitiva. Estos recursos cubren desde conceptos
+            fundamentales hasta técnicas avanzadas utilizadas en competencias
+            internacionales.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {Books.map((book) => (
             <BookItem key={book.referenceUrl} book={book} />
           ))}
